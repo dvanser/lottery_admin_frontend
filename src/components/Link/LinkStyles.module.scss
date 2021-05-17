@@ -1,0 +1,37 @@
+.tribe-link {
+  color: #000000;
+  font-size: 15px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.tribe-link {
+  &:hover, &:active, &:focus {
+    text-decoration: underline;
+  }
+}
+
+.tribe-link-nav {
+  color: #000000;
+  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  opacity: 1;
+  margin-right: 38px;
+  padding-bottom: 10px !important;
+
+  &:hover, &:focus, &:active, &visited {
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: #000000;
+  }
+}
+
+.tribe-link-nav-active {
+  color: #000000;
+  border-bottom: 2px solid #000000;
+}

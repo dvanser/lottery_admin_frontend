@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap');
+
+.modalContainer {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.2); /* Black w/ opacity */
+  & .big {
+    width: 990px;
+  }
+  & .small {
+    width: 330px;
+  }
+  & .medium {
+    width: 660px;
+  }
+}
+
+.modalBox {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  width: 330px;
+  border: 1px solid #888;
+  box-shadow: 0px 8px 36px rgba(0, 0, 0, 0.16);
+  border-radius: 16px;
+}
+
+.modalContent {
+  margin-bottom: 10px
+}
+
+.buttonColumn {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  & .buttonStyle {
+    width: 100%;
+  }
+  & > * {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  & .buttonStyle {
+    width: 45%;
+  }
+}
+
+.buttonStyle {
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  & div {
+    margin: 0 auto;
+    font-family: 'Work Sans', sans-serif;
+  }
+  &:hover {
+    transform: scale(1.025);
+  }
+}
+
+.blueButton {
+  background: #2B4BF2;
+  color: white;
+}
+
+.grayButton {
+  border: 1px solid rgba(86, 103, 137, 0.26);
+  background-color: white;
+}

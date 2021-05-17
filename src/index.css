@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  padding: 0 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* paddings to 0 */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* margins to 0 */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/*  Default settings for body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Delete standart style for ul and ol */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/*  Default style for a without classes  */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Making it easier to work with images */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Indicate an understandable frequency in the data stream for article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Font inheritance for inputs buttons and textareas */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
