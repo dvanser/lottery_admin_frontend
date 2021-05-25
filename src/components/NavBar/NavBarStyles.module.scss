@@ -1,0 +1,152 @@
+@import "./src/assets/scss/pols_variables";
+
+.wrapper {
+    background-image: url("../../assets/header_bg.svg");
+    background-repeat: no-repeat no-repeat;
+    background-size: 100%;
+    background-position: left top;
+    z-index: 10;
+    margin-top: 0;
+    position: relative;
+    height: 185px;
+    padding-right: 10%;
+    padding-left: 10%;
+    display: flex;
+}
+
+.navBarLogo {
+    margin-top: -6px;
+    margin-left: -18px;
+}
+
+.navBarItem {
+    //padding-left: 56px;
+    //flex: 1 1 0%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navBarText {
+    font-size: 25px;
+    line-height: 30px;
+    color: $pols-dark-blue;
+}
+
+.langChange {
+    cursor: pointer;
+    //position: absolute;
+    color: black;
+    //top: 0%;
+    //right: 5%;
+    //z-index: 40;
+}
+
+.icon {
+  width: 35.77px;
+  height: 35.33px;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.langDropdownBtn {
+  padding-top: 5px;
+  width: 90px;
+  height: 40px;
+  text-align: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  color: $pols-dark-blue;
+  cursor: pointer;
+  border: 1px solid $pols-dark-blue;
+  border-radius: 20px;
+}
+
+.langDropdownMenu {
+  padding: 0 !important;
+  width: 90px !important;
+  min-width: auto !important;
+  border: 1px solid $pols-dark-blue !important;
+  border-radius: 20px !important;
+}
+
+.langDropdownItem {
+  height: 40px !important;
+  color: $pols-dark-blue !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.langDropdownItem:hover, .langDropdownItem:focus {
+  color: $pols-dark-blue !important;
+}
+
+.langDropdownItem:active {
+  color: #ffffff !important;
+  background-color: $pols-white-background !important;
+}
+
+.langDropdownItemFirst {
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+}
+
+.langDropdownItemLast {
+  border-bottom-left-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+}
+
+.navBarMenu {
+  text-align: center;
+  padding-top: 44px;
+}
+
+.langDropdown {
+  margin-top: 48px;
+}
+
+.navBarToggleIcon {
+  width: 42px;
+  height: 26px;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.navBarItemMargin {
+  margin-left: 0 !important;
+  margin-right: 0.5rem !important;
+}
+
+.navBar {
+  padding: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.langDropdownWrapper {
+  margin-top: -15px;
+}
+
+@media (min-width: 1200px) {
+  margin-right: 1rem !important;
+}
+
+@media (min-width: 1395px) {
+  .navBarItemMargin {
+    margin-left: 1rem !important;
+  }
+}
+
+@media (min-width: 1530px) {
+  .navBarItemMargin {
+    margin-left: 2rem !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  .navBarItemMargin {
+    margin-left: 3rem !important;
+  }
+}

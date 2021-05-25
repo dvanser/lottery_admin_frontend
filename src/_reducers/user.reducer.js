@@ -8,6 +8,7 @@ const initialState = {
     surname: '',
     role: 'guest',
     status: 'created',
+    codesCount: 0,
 };
 
 export function user(state = Object.assign({}, initialState), action) {

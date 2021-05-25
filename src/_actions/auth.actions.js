@@ -17,11 +17,9 @@ function login(data) {
 
                 history.push('/');
             }).catch(error => {
-
                 if (error.error) {
                     dispatch(logout())
                 }
-
                 dispatch(failure(error));
             });
     };
@@ -39,12 +37,12 @@ function logout() {
                     localStorage.removeItem(config.accessTokenName);
                     dispatch(success());
                     dispatch(resetUser());
-                    history.push('/');
+                    history.push('/login');
                 },
                 error => {
                     localStorage.removeItem(config.accessTokenName);
                     dispatch(failure());
-                    history.push('/');
+                    history.push('/login');
                 }
             );
     };

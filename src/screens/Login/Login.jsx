@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { postRequest } from '../../_library/request';
 import { store } from '../../_library/store';
 import loginPageStyle from './LoginPageStyle.module.scss';
-import { LanguageChanger } from '../../components/LanguageChanger';
+import {Col, Container, Row} from "reactstrap";
 
 
 const Login = () => {
@@ -21,10 +21,10 @@ const Login = () => {
         password: Yup.string()
           .min(2, intl.formatMessage({id:'pols.login.validation.password_min'}))
           .max(70, intl.formatMessage({id:'pols.login.validation.password_max'}))
-          .required(intl.formatMessage({id:'pols.login.validation.required'})),
+          .required(intl.formatMessage({id:'pols.login.validation.password_required'})),
         email: Yup.string()
           .email(intl.formatMessage({id:'pols.login.validation.email_invalid'}))
-          .required(intl.formatMessage({id:'pols.login.validation.required'})),
+          .required(intl.formatMessage({id:'pols.login.validation.email_required'})),
       });
 
     const onSubmit = value => postRequest('/login', value).then(response => { 
@@ -32,25 +32,24 @@ const Login = () => {
         store.dispatch(authActions.login(response))}  
      ).catch(error => {
          error.error ? setErrorMessage(<FormattedMessage id={`pols.login.error.${error.error}`}/>)  : setErrorMessage(<FormattedMessage id="pols.login.error.something"/>);
-     }) 
+     });
 
     return(
-        <div className={loginPageStyle.container}>
-            <LanguageChanger />
-            <Block big className={loginPageStyle.loginFormContainer}>
-                <Text h3 className={loginPageStyle.title} justify>
-                    <FormattedMessage id="pols.login.title"/>
-                </Text>
-                {errorMessage && <Text bodyBig  justify className={loginPageStyle.errorMessage}>{errorMessage}</Text> }
-                <Form initialValues={{email: '', password: ''}}
-                      inputFields={[{name:'email', type:'email', label:intl.formatMessage({id:'pols.login.email'})},
-                                    {name:'password', type:'password', label:intl.formatMessage({id:'pols.login.password'})}]}
-                      onSubmit={value => onSubmit(value)}
-                      validationSchema={validationSchema}
-                      buttonText={<FormattedMessage id="pols.login.title"/>}
-                />
-            </Block>
-        </div>
+        <Container>
+            <Row>
+                <Col xs={6}>
+                    <Text className="mt-5" left h1 label="pols.login.title" />
+                    {errorMessage && <Text error className={loginPageStyle.errorMessage}>{errorMessage}</Text> }
+                    <Form initialValues={{email: '', password: ''}}
+                          inputFields={[{name:'email', type:'email', label:intl.formatMessage({id:'pols.login.email'})},
+                                        {name:'password', type:'password', label:intl.formatMessage({id:'pols.login.password'})}]}
+                          onSubmit={value => onSubmit(value)}
+                          validationSchema={validationSchema}
+                          buttonText={<FormattedMessage id="pols.login.btn.submit"/>}
+                    />
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

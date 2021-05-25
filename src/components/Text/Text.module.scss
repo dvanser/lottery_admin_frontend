@@ -1,14 +1,7 @@
-@import './reset.scss';
+@import "./src/assets/scss/pols_style";
+@import "./src/assets/scss/pols_variables";
 
-.text {
-    font-family: Inter;
-    font-style: normal;
-    color: #19191D;
-    align-items: center;
-    display: inline-block;
-}
-
-@mixin txtmixin ($fw,$fz,$lh,$letspac){
+@mixin txtmixin ($fw, $fz, $lh, $letspac){
     font-weight: $fw;
     font-size: $fz;
     line-height: $lh; 
@@ -16,7 +9,8 @@
 }
 
 .h1 {
-   @include txtmixin(bold,96px,118px,-1.75px);
+   @include txtmixin(bold, 50px, 60px, 0.02em);
+    margin-bottom: 40px;
 }
 
 .h2 {
@@ -79,4 +73,16 @@
 
 .justify {
     text-align: justify;
+}
+
+.small {
+    font-size: 18px;
+}
+
+.error {
+    color: #333333;
+}
+
+.caps {
+    text-transform: uppercase;
 }

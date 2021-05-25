@@ -1,0 +1,1 @@
+export const PrizeRequests = () => ({default: PrizeRequests});
