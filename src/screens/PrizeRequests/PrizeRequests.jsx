@@ -1,28 +1,27 @@
 import React  from 'react';
 import {Button, Text} from '../../components/';
 import { Table } from '../../components/Table';
-import { getRequest } from '../../_library/request';
+import { getFileRequest } from '../../_library/request';
 import { Col, Row } from 'reactstrap';
 import { history } from '../../_library';
 
 
 export const PrizeRequests = props => {
-
     const downloadLabel = (id) => {
-        getRequest(`/label/${id}`)
-            .then(response => {
-                response.
-                response.blob().then(blob => {
-                    let url = window.URL.createObjectURL(blob);
-                    let a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'employees.pdf';
-                    a.click();
-                });
-            }).catch(response => {
-            if (response.error) {
-            }
-        });
+        getFileRequest(`/label/${id}`)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(new Blob([blob]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', `${id}PDPLabel.pdf`);
+
+                document.body.appendChild(link);
+
+                link.click();
+                link.parentNode.removeChild(link);
+            }).catch(error => {console.log(error)}
+        );
     };
 
     return (
