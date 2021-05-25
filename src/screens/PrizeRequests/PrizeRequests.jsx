@@ -7,7 +7,6 @@ import { history } from '../../_library';
 
 
 export const PrizeRequests = props => {
-
     const downloadLabel = (id) => {
         getFileRequest(`/label/${id}`)
             .then(response => response.blob())
