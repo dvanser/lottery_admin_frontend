@@ -1,11 +1,11 @@
 import React from 'react';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { IntlProvider } from './_library/connectedIntlProvider';
 import { App } from './App';
 import { store } from './_library';
+import './assets/scss/pols_style.scss';
+import reportWebVitals from './reportWebVitals';
 
 
 render(

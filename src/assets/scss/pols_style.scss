@@ -1,0 +1,51 @@
+@import './pols_variables.scss';
+@import './bootstrap.scss';
+
+@font-face {
+  font-family: 'CUKIER-Bold';
+  src: url("../fonts/CUKIER-Bold.otf") format('opentype');
+}
+
+body, html {
+  text-align: left;
+  font-family: "Cukier-bold" !important;
+  font-size: 20px !important;
+  letter-spacing: 0.09px;
+  color: $pols-black;
+  opacity: 1;
+  background: $pols-white-background no-repeat;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 32px;
+}
+
+.container {
+  margin-bottom: 50px;
+}
+
+.pols-select__control {
+  border: $pols-white solid 6px;
+  border-radius: 3px;
+  background: transparent;
+  padding: 19px 13px;
+  height: 80px;
+  font-weight: normal;
+  color: $pols-white;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
+  ::placeholder {
+    padding: 19px 13px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.pols-select__option {
+  color: $pols-dark-blue !important;
+}
+
+*:focus {
+  outline: none
+}

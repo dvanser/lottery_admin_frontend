@@ -1,0 +1,33 @@
+.title {
+  padding-bottom: 20px;
+}
+
+.languageChoose {
+  display: flex;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  & div {
+    padding: 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.loginFormContainer {
+  margin: 0 auto;
+  margin-top: 50px;
+  &:first-child {
+    margin-bottom: 25px;
+  }
+}
+
+.loginForm {
+  margin: 0 auto;
+}
+
+.errorMessage {
+  color: #D30000;
+  text-align: center;
+}

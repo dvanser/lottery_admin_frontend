@@ -3,15 +3,15 @@ import { Route, Switch, Router } from 'react-router-dom';
 import { history } from './_library';
 import { LoadingWithSuspense } from './components';
 import { connect } from 'react-redux';
-import { PrivateRoute } from './components';
 import { userActions } from './_actions/';
 import config from './config';
-
+import { PrivateRoute } from './components';
 
 const Login = React.lazy(() => import(/* webpackChunkName: "login" */ './screens/Login/Login').then(module => ({default: module.Login})));
-const Test = React.lazy(() => import(/* webpackChunkName: "test" */ './screens/Test/Test').then(module => ({default: module.TestScreen})));
-const Dashboard = React.lazy(() => import(/* webpackChunkName: "dashboard" */ './screens/Dashboard/Dashboard').then(module => ({default: module.Dashboard})));
 const PageNotFound = React.lazy(() => import(/* webpackChunkName: "page_not_found" */ './screens/PageNotFound/PageNotFound').then(module => ({default: module.PageNotFound})));
+const Users = React.lazy(() => import(/* webpackChunkName: "page_not_found" */ './screens/Users/Users').then(module => ({default: module.Users})));
+const UserDetails = React.lazy(() => import(/* webpackChunkName: "page_not_found" */ './screens/UserDetails/UserDetails').then(module => ({default: module.UserDetails})));
+const PrizeRequests = React.lazy(() => import(/* webpackChunkName: "page_not_found" */ './screens/PrizeRequests/PrizeRequests').then(module => ({default: module.PrizeRequests})));
 
 
 class App extends Component {
@@ -26,10 +26,15 @@ class App extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route exact path="/test" render={(props) => LoadingWithSuspense(Test, props)} />
-                    <Route exact path="/login/:token?" render={(props) => LoadingWithSuspense(Login, props)} />
+                    <Route exact path="/login" render={(props) => LoadingWithSuspense(Login, props)} />
                     <Route exact path="/404" render={(props) => LoadingWithSuspense(PageNotFound, props)} />
-                    <PrivateRoute exact path="/" render={(props) => LoadingWithSuspense(Dashboard, props)}
+                    <PrivateRoute exact path="/" render={(props) => LoadingWithSuspense(Users, props)}
+                                  exactRole={config.userRoles['admin']} />
+                    <PrivateRoute exact path="/users" render={(props) => LoadingWithSuspense(Users, props)}
+                                  exactRole={config.userRoles['admin']} />
+                    <PrivateRoute exact path="/users/details/:userId" render={(props) => LoadingWithSuspense(UserDetails, props)}
+                                  exactRole={config.userRoles['admin']} />
+                    <PrivateRoute exact path="/prize/requests" render={(props) => LoadingWithSuspense(PrizeRequests, props)}
                                   exactRole={config.userRoles['admin']} />
                     <Route render={(props) => LoadingWithSuspense(PageNotFound, props)} />
                 </Switch>

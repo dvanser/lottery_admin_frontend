@@ -1,0 +1,42 @@
+@import "./src/assets/scss/pols_variables";
+
+.input {
+    border: $pols-black solid 6px;
+    border-radius: 3px;
+    background: transparent;
+    padding: 19px 13px;
+    height: 80px;
+    font-weight: normal;
+    color: $pols-black;
+    width: 100%;
+    &:focus {
+       outline: none;
+   }
+    ::placeholder {
+        padding: 19px 13px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.container {
+    position: relative;
+    display: block;
+    justify-content: flex-end;
+    align-items: center;
+    align-content: center;
+    width: 224px;
+    height: 64px;
+    background: $pols-white-background;
+    border: 2px solid #B4B4BB;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.label {
+    padding-top: 20px;
+    margin-bottom: 11px;
+    font-style: normal;
+    display: flex;
+    color: $pols-black;
+}

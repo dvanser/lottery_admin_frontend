@@ -1,0 +1,17 @@
+@import "../../assets/scss/pols_variables";
+
+.pols-table-head {
+  padding: 30px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.pols-table-row {
+  padding: 30px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  background-color: $pols-white;
+  color: $pols-text-secondary-color;
+  box-shadow: 0px 0px 18px #7073DE2B;
+  margin-bottom: 15px;
+}

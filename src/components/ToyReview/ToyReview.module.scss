@@ -1,0 +1,154 @@
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    width: max-content;
+    position: relative;
+    font-size: 0 !important;
+}
+
+.smallSticks {
+    position: absolute;
+    background-color: #1AA0E1;
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, var(--tw-text-opacity));
+    left: 4%;
+    top: -4%;
+}
+
+.mediumSticks {
+    position: absolute;
+    background-color: #1AA0E1;
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, var(--tw-text-opacity));
+    right: 15%;
+    top: -4%;
+}
+
+.bigSticks {
+    position: absolute;
+    background-color: #1AA0E1;
+    --tw-text-opacity: 1;
+    color: rgba(255, 255, 255, var(--tw-text-opacity));
+    left: -10%;
+    bottom: 37%;
+}
+
+.bigCounter {
+    position: absolute;
+    background-color: #FFFFFF;
+    --tw-text-opacity: 1;
+    color: #10316C;
+    right: 0%;
+    bottom: 0%;
+    z-index: 40;
+}
+
+.mediumCounter {
+    position: absolute;
+    background-color: #FFFFFF;
+    --tw-text-opacity: 1;
+    color: #10316C;
+    right: 0%;
+    top: 35%;
+    z-index: 40;
+}
+
+.smallCounter {
+    position: absolute;
+    background-color: #FFFFFF;
+    --tw-text-opacity: 1;
+    color: #10316C;
+    left: 30%;
+    top: 35%;
+    z-index: 40;
+}
+
+.smallToy {
+    grid-column-start: 1;
+    border: #FFFFFF 4px solid;
+    font-size: 0;
+}
+
+.mediumToy {
+    grid-column-start: 2;
+    border: #FFFFFF 4px solid;
+    font-size: 0;
+}
+
+.bigToy {
+    grid-column-start: 1;
+    grid-column: span 2 / span 2;
+    border: #FFFFFF 4px solid;
+    font-size: 0;
+}
+
+.PolsBody {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+    line-height: 18px;
+}
+
+.PolsBold {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.ToyCounterLeft {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 11.7894px;
+    line-height: 14px;
+    text-align: center;
+    color: #10316C;
+    padding: 0.375rem;
+}
+
+.ToyCounter {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+    color: #10316C;
+}
+
+.hidden {
+    display: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.smallToyImg {
+    position: absolute;
+    transform-origin: center;
+    transform: scale(1.05);
+    bottom: 45%;
+    left: -17%;
+}
+
+.mediumToyImg {
+    position: absolute;
+    transform: scale(1.05);
+    right: -10%;
+}
+
+.bigToyImg {
+    position: absolute;
+    transform: scale(1.05);
+    bottom: -10%;
+    left: -11%;
+}
