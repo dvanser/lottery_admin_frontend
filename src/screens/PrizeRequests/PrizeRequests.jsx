@@ -1,7 +1,7 @@
 import React  from 'react';
 import {Button, Text} from '../../components/';
 import { Table } from '../../components/Table';
-import { getFileRequest } from '../../_library/request';
+import { getFileRequest, putRequest } from '../../_library/request';
 import { Col, Row } from 'reactstrap';
 import { history } from '../../_library';
 
@@ -24,6 +24,13 @@ export const PrizeRequests = props => {
         );
     };
 
+    const updateStatus = (id) => {
+        putRequest(`/prizes/requests/${id}`)
+            .then()
+            .catch(error => {console.log(error)}
+        );
+    };
+
     return (
         <div className="pl-2 pr-2">
             <Row>
@@ -43,8 +50,9 @@ export const PrizeRequests = props => {
                 labelNotFound="pols.common.not_found"
                 fields={[
                     {label: 'pols.prize_request.id', name: 'id', bold: true, primary: true, type: 'number'},
+                    {label: 'pols.prize_request.details', name: 'prizesData', primary: true, type: 'array'},
                     {label: 'pols.prize_request.user_id', name: 'userId', bold: true, primary: true, type: 'number'},
-                    // {label: 'pols.prize_request.status', name: 'status', type: 'text'},
+                    {label: 'pols.prize_request.status', type: 'buttonStatus', name: 'status', buttonOnClick: (id) => updateStatus(id),  buttonLabel: 'pols.btn.download_label'},
                     {label: 'pols.prize_request.pl_numbers', name: 'plNumbers', type: 'text'},
                     {type: 'button', buttonOnClick: (id) => downloadLabel(id),  buttonLabel: 'pols.btn.download_label'}
                 ]}
