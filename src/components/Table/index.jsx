@@ -82,13 +82,19 @@ export const Table = props => {
                                             });
                                             break;
                                         case 'button':
-                                            fieldText = <Button onClick={
-                                                (field.openDetailsLink && item.id !== undefined ?
-                                                    () => history.push(field.openDetailsLink + item.id) :
-                                                    () => field.buttonOnClick(item.id))
-                                            }>
-                                                <Text label={field.buttonLabel}/>
-                                            </Button>;
+                                            if (item.plNumbers === '') {
+                                                fieldText = <Button>
+                                                    <Text label={'Pick up'}/>
+                                                </Button>;
+                                            } else {
+                                                fieldText = <Button onClick={
+                                                    (field.openDetailsLink && item.id !== undefined ?
+                                                        () => history.push(field.openDetailsLink + item.id) :
+                                                        () => field.buttonOnClick(item.id))
+                                                }>
+                                                    <Text label={field.buttonLabel}/>
+                                                </Button>;
+                                            }
                                             break;
                                         case 'buttonStatus':
                                             fieldText = <Button onClick={
