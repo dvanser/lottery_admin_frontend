@@ -75,13 +75,34 @@ export const Table = props => {
                                         case 'status':
                                             fieldText = field.statuses.find(s => s.value === item[field.name]).name;
                                             break;
+                                        case 'array':
+                                            fieldText = '';
+                                            item['prizesData'].forEach(element => {
+                                                fieldText = fieldText + 'type: ' + element.type + '; count: ' + element.count + '<br />'
+                                            });
+                                            break;
                                         case 'button':
+                                            if (item.plNumbers === '') {
+                                                fieldText = <Button>
+                                                    <Text label={'Pick up'}/>
+                                                </Button>;
+                                            } else {
+                                                fieldText = <Button onClick={
+                                                    (field.openDetailsLink && item.id !== undefined ?
+                                                        () => history.push(field.openDetailsLink + item.id) :
+                                                        () => field.buttonOnClick(item.id))
+                                                }>
+                                                    <Text label={field.buttonLabel}/>
+                                                </Button>;
+                                            }
+                                            break;
+                                        case 'buttonStatus':
                                             fieldText = <Button onClick={
                                                 (field.openDetailsLink && item.id !== undefined ?
                                                     () => history.push(field.openDetailsLink + item.id) :
                                                     () => field.buttonOnClick(item.id))
                                             }>
-                                                <Text label={field.buttonLabel}/>
+                                                <Text label={item.status}/>
                                             </Button>;
                                             break;
                                         case 'text':
@@ -106,7 +127,10 @@ export const Table = props => {
                                                               field.icon.typeConditionFalse) :
                                                           field.icon.type)} />
                                                 }
-                                                {(!field.icon || !field.icon.afterText) &&
+                                                {field.type === 'array' &&
+                                                    <><div dangerouslySetInnerHTML={{__html: fieldText}} /></>
+                                                }
+                                                {(!field.icon || !field.icon.afterText) && field.type !== 'array' &&
                                                 <>{fieldText}</>
                                                 }
                                             </Text>

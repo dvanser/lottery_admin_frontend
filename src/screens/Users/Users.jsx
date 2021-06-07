@@ -25,7 +25,7 @@ export const Users = props => {
                 labelNotFound="pols.common.not_found"
                 fields={[
                     {label: 'pols.user.id', name: 'id', bold: true, primary: true, type: 'number'},
-                    // {label: 'pols.user.email', name: 'email', type: 'text'},
+                    {label: 'pols.user.email', name: 'email', type: 'text'},
                     {label: 'pols.user.name', name: 'name', type: 'text'},
                     {label: 'pols.user.surname', name: 'surname', type: 'text'},
                     {label: 'pols.user.phone', name: 'phone', type: 'text'},
