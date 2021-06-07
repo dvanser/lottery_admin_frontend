@@ -1,5 +1,6 @@
 let config = {
-    baseUrl: 'http://127.0.0.1:5000', //MEMO: michael: local
+    baseUrl: 'https://api.polslv.micron.lv', //MEMO: michael: prod
+    // baseUrl: 'http://127.0.0.1:5000', //MEMO: michael: local
     accessTokenName: 'access_token',
     userRoles: {
         'guest': 0,
