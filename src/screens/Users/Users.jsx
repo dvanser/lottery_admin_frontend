@@ -29,7 +29,7 @@ export const Users = props => {
                     {label: 'pols.user.name', name: 'name', type: 'text'},
                     {label: 'pols.user.surname', name: 'surname', type: 'text'},
                     {label: 'pols.user.phone', name: 'phone', type: 'text'},
-                    {label: 'pols.user.sticks_count', name: 'stickCount', bold: true, primary: true, type: 'number'},
+                    {label: 'pols.user.sticks_count', name: 'sticksCount', bold: true, primary: true, type: 'number'},
                     {type: 'button', openDetailsLink: '/users/details/', buttonLabel: 'pols.btn.receipts'}
                 ]}
             />
