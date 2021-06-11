@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './index.scss';
 import { formatDate, formatNumber } from '../../_library/common';
 import { getRequest } from '../../_library/request';
@@ -14,13 +14,18 @@ export const Table = props => {
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [loadingError, setLoadingError] = useState(false);
+    const loadingRef = useRef(loading);
 
 
     const handlePageClick = (page) => {
+        console.log(page);
+        setLoading(true);
+        loadingRef.current = true;
+
         if (props.url !== undefined) {
             setLoading(true);
 
-            getRequest(props.url)
+            getRequest(`${props.url}?&page=${page}`)
                 .then(responseData => {
                     setLoading(false);
                     setData(responseData[props.keyInResponse]);
@@ -38,9 +43,14 @@ export const Table = props => {
         }
     };
 
+    useEffect(() => {
+        if (props.updateData && props.updateData === true) {
+            handlePageClick(page);
+            props.updateDataStatus();
+        }
+    }, [props.updateData]);
 
     useEffect(() => {
-
         handlePageClick(page);
     }, []);
 
@@ -143,7 +153,7 @@ export const Table = props => {
                 </div>
             }
 
-            <Paginator className="mt-4" start={1} end={pages} selected={page} onChange={handlePageClick} />
+            <Paginator className="mt-4 mb-4 text-center" start={1} end={pages} selected={page} onChange={handlePageClick} />
         </>
     );
 
