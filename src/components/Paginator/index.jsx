@@ -41,9 +41,9 @@ export const Paginator = props => {
 
     for (let i = start; i <= end; i++) {
         if (i === props.selected) {
-            pages.push(<div className="pols-paginator-page-selected d-inline-block text-center">{i}</div>);
+            pages.push(<div key={i} className="pols-paginator-page-selected d-inline-block text-center">{i}</div>);
         } else {
-            pages.push(<div className="pols-paginator-page d-inline-block"><Text light dark center onClick={() => {props.onChange(i)}}>{i}</Text></div>);
+            pages.push(<div key={i} className="pols-paginator-page d-inline-block" onClick={() => props.onChange(i)}><Text light dark center>{i}</Text></div>);
         }
     }
 

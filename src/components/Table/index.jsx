@@ -15,6 +15,7 @@ export const Table = props => {
     const [loading, setLoading] = useState(false);
     const [loadingError, setLoadingError] = useState(false);
     const loadingRef = useRef(loading);
+    const [total, setTotal] = useState(0);
 
 
     const handlePageClick = (page) => {
@@ -30,6 +31,12 @@ export const Table = props => {
                     setLoading(false);
                     setData(responseData[props.keyInResponse]);
                     setPages(responseData.pages);
+                    if (responseData.total !== undefined) {
+                        setTotal(responseData.total);
+                    } else {
+                        setTotal(-1);
+                    }
+
                     setPage(page);
                     setLoadingError(false);
                 })
@@ -66,96 +73,99 @@ export const Table = props => {
                 <Text label={props.labelNotFound} />
             }
             {data.length > 0 &&
-                <div className="pols-table mt-3">
-                    <Row className="pols-table-head">
-                        {props.fields.map((field, idx) => (
-                            <Col key={idx}><Text left={field.left} bold label={field.label} /></Col>
-                        ))}
-                    </Row>
-                    {data.map((item, idx) => (
-                        <Row className="pols-table-row" key={idx}>
-                            {props.fields.map((field, idx) => {
+                <>
+                    {total !== -1 &&
+                        <Text bold left>Total: {total}</Text>
+                    }
+                    <div className="pols-table mt-3">
+                        <Row className="pols-table-head">
+                            {props.fields.map((field, idx) => (
+                                <Col key={idx}><Text left={field.left} bold label={field.label} /></Col>
+                            ))}
+                        </Row>
+                        {data.map((item, idx) => (
+                            <Row className="pols-table-row" key={idx}>
+                                {props.fields.map((field, colIdx) => {
 
-                                    let fieldText = '';
+                                        let fieldText = '';
 
-                                    switch(field.type) {
-                                        case 'number':
-                                            fieldText = formatNumber(item[field.name]);
-                                            break;
-                                        case 'status':
-                                            fieldText = field.statuses.find(s => s.value === item[field.name]).name;
-                                            break;
-                                        case 'array':
-                                            fieldText = '';
-                                            item['prizesData'].forEach(element => {
-                                                fieldText = fieldText + 'type: ' + element.type + '; count: ' + element.count + '<br />'
-                                            });
-                                            break;
-                                        case 'button':
-                                            if (item.plNumbers === '') {
-                                                fieldText = <Button>
-                                                    <Text label={'Pick up'}/>
-                                                </Button>;
-                                            } else {
+                                        switch(field.type) {
+                                            case 'number':
+                                                fieldText = formatNumber(item[field.name]);
+                                                break;
+                                            case 'status':
+                                                fieldText = field.statuses.find(s => s.value === item[field.name]).name;
+                                                break;
+                                            case 'array':
+                                                fieldText = '';
+                                                item['prizesData'].forEach(element => {
+                                                    fieldText = fieldText + 'type: ' + element.type + '; count: ' + element.count + '<br />'
+                                                });
+                                                break;
+                                            case 'button':
+                                                if (item.plNumbers === '') {
+                                                    fieldText = <Button>
+                                                        <Text label={'Pick up'}/>
+                                                    </Button>;
+                                                } else {
+                                                    fieldText = <Button onClick={
+                                                        (field.openDetailsLink && item.id !== undefined ?
+                                                            () => history.push(field.openDetailsLink + item.id) :
+                                                            () => field.buttonOnClick(item.id))
+                                                    }>
+                                                        <Text label={field.buttonLabel}/>
+                                                    </Button>;
+                                                }
+                                                break;
+                                            case 'buttonStatus':
                                                 fieldText = <Button onClick={
                                                     (field.openDetailsLink && item.id !== undefined ?
                                                         () => history.push(field.openDetailsLink + item.id) :
                                                         () => field.buttonOnClick(item.id))
                                                 }>
-                                                    <Text label={field.buttonLabel}/>
+                                                    <Text label={item.status}/>
                                                 </Button>;
-                                            }
-                                            break;
-                                        case 'buttonStatus':
-                                            fieldText = <Button onClick={
-                                                (field.openDetailsLink && item.id !== undefined ?
-                                                    () => history.push(field.openDetailsLink + item.id) :
-                                                    () => field.buttonOnClick(item.id))
-                                            }>
-                                                <Text label={item.status}/>
-                                            </Button>;
-                                            break;
-                                        case 'text':
-                                        default:
-                                            fieldText = item[field.name];
-                                            break;
-                                    }
+                                                break;
+                                            case 'text':
+                                            default:
+                                                fieldText = item[field.name];
+                                                break;
+                                        }
 
-                                    return (
-                                        <Col>
-                                            <Text left={field.left} bold={field.bold} primary={field.primary}
-                                                  error={field.colorCondition !== undefined && item[field.colorCondition.conditionFieldName]}
-                                                  success={field.colorCondition !== undefined && !item[field.colorCondition.conditionFieldName]} >
-                                                {field.icon !== undefined && field.icon.afterText &&
-                                                <>{fieldText}</>
-                                                }
-                                                {field.icon !== undefined &&
-                                                <Icon className={field.icon.className}
-                                                      type={(field.icon.conditionFieldName ?
-                                                          (item[field.icon.conditionFieldName] === field.icon.conditionFieldValue ?
-                                                              field.icon.typeConditionTrue :
-                                                              field.icon.typeConditionFalse) :
-                                                          field.icon.type)} />
-                                                }
-                                                {field.type === 'array' &&
-                                                    <><div dangerouslySetInnerHTML={{__html: fieldText}} /></>
-                                                }
-                                                {(!field.icon || !field.icon.afterText) && field.type !== 'array' &&
-                                                <>{fieldText}</>
-                                                }
-                                            </Text>
-                                        </Col>
-                                    );
-                                }
-                            )}
-                        </Row>
-                    ))}
-                </div>
+                                        return (
+                                            <Col key={idx + '_' + colIdx}>
+                                                <Text left={field.left} bold={field.bold} primary={field.primary}
+                                                      error={field.colorCondition !== undefined && item[field.colorCondition.conditionFieldName]}
+                                                      success={field.colorCondition !== undefined && !item[field.colorCondition.conditionFieldName]} >
+                                                    {field.icon !== undefined && field.icon.afterText &&
+                                                    <>{fieldText}</>
+                                                    }
+                                                    {field.icon !== undefined &&
+                                                    <Icon className={field.icon.className}
+                                                          type={(field.icon.conditionFieldName ?
+                                                              (item[field.icon.conditionFieldName] === field.icon.conditionFieldValue ?
+                                                                  field.icon.typeConditionTrue :
+                                                                  field.icon.typeConditionFalse) :
+                                                              field.icon.type)} />
+                                                    }
+                                                    {field.type === 'array' &&
+                                                        <><div dangerouslySetInnerHTML={{__html: fieldText}} /></>
+                                                    }
+                                                    {(!field.icon || !field.icon.afterText) && field.type !== 'array' &&
+                                                    <>{fieldText}</>
+                                                    }
+                                                </Text>
+                                            </Col>
+                                        );
+                                    }
+                                )}
+                            </Row>
+                        ))}
+                    </div>
+                </>
             }
 
             <Paginator className="mt-4 mb-4 text-center" start={1} end={pages} selected={page} onChange={handlePageClick} />
         </>
     );
-
-
-};
+}
