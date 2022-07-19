@@ -1,6 +1,6 @@
 let config = {
-    baseUrl: 'https://api.pols.lv', //MEMO: michael: prod
-    // baseUrl: 'http://127.0.0.1:5000', //MEMO: michael: local
+    baseUrl: 'https://api.domain.lv', //MEMO: prod
+    // baseUrl: 'http://127.0.0.1:5000', //MEMO: local
     accessTokenName: 'access_token',
     userRoles: {
         'guest': 0,
